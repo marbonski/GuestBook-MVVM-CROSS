@@ -26,6 +26,9 @@ namespace MvxStarter.Core.ViewModels
             LastName = string.Empty;
             People.Add(p);
         }
+
+        public bool CanAddGuest => FirstName?.Length > 0 && LastName?.Length > 0;
+
         private MvxObservableCollection<PersonModel> _people = new MvxObservableCollection<PersonModel>();
 
         public MvxObservableCollection<PersonModel> People
@@ -43,6 +46,7 @@ namespace MvxStarter.Core.ViewModels
             {
                 SetProperty(ref _firstName, value);
                 RaisePropertyChanged(() => FullName);
+                RaisePropertyChanged(() => CanAddGuest);
 
             }
         }
@@ -56,6 +60,7 @@ namespace MvxStarter.Core.ViewModels
             {
                 SetProperty(ref _lastName, value);
                 RaisePropertyChanged(() => FullName);
+                RaisePropertyChanged(() => CanAddGuest);
             }
         }
 
